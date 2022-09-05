@@ -16,6 +16,6 @@ RUN  cd gokay/usr && mkdir bin
 
 RUN   apt-get -y update
 
-RUN  apt install docker.io
+RUN  apt install -y docker.io
 
 RUN  snap install docker
