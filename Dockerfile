@@ -18,4 +18,4 @@ RUN   apt-get -y update
 
 RUN  apt install -y docker.io
 
-RUN docker ps
+VOLUME var/run/docker.sock:var/run/docker.sock
