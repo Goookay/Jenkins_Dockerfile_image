@@ -6,6 +6,9 @@ pipeline {
                 args '--name fubuntu --user root -v /var/run/docker.sock:/var/run/docker.sock'
 
         }
+       
+       environment {
+           DOCKERHB_CREDENTIALS = credentials("gokay-docker") 
    
    }     
     stages {
@@ -30,7 +33,7 @@ pipeline {
             stage ('push image') {
 
                 steps {
-                    sh 'docker login -u gokayturhanoglu --password dckr_pat_8U8CbFW1BjagKmufKUGal-19jj8 '
+                    sh 'docker login -u gokayturhanoglu --password $DOCKERHUB_CREDENTIALS_PSW '
                     sh 'docker commit fubuntu gokayturhanoglu/jenkinsdeneme'
                     sh 'docker push gokayturhanoglu/jenkinsdeneme'
                 }
