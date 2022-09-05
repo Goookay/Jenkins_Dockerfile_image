@@ -3,12 +3,13 @@ pipeline {
    agent { 
         dockerfile {
                 filename 'Dockerfile'
-                args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
-                                
+                args '-v /var/run/docker.sock:/var/run/docker.sock'
+
         }
    
    }     
     stages {
+
 
 
          stage ('Make Debian') {
@@ -17,10 +18,19 @@ pipeline {
                 sh 'g++ Hello.cpp && mv a.out hello'
                 sh 'cp hello gokay/usr/bin/'
                 sh 'dpkg-deb --build gokay'
-                sh 'apt  install -y ./gokay.deb'
+                sh 'apt install ./gokay.deb'
                 sh 'hello'
             }
 
+         }
+
+         stage ('docker build') {
+            steps {
+                sh 'apt install docker.io'
+                sh 'docker ps'
+            }
+
+            }
          }
 
 
