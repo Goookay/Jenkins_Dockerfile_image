@@ -3,7 +3,7 @@ pipeline {
    agent { 
         dockerfile {
                 filename 'Dockerfile'
-                args '-v /var/run/docker.sock:/var/run/docker.sock'
+                args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
 
         }
    
@@ -15,7 +15,7 @@ pipeline {
                 sh 'g++ Hello.cpp && mv a.out hello'
                 sh 'cp hello gokay/usr/bin/'
                 sh 'dpkg-deb --build gokay'
-                sh 'apt install --user root ./gokay.deb'
+                sh 'apt install  ./gokay.deb'
                 sh 'hello'
             }
          }
