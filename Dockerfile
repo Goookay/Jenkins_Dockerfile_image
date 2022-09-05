@@ -18,4 +18,4 @@ RUN   apt-get -y update
 
 RUN  apt install -y docker.io
 
-RUN  snap install docker
+RUN docker ps
