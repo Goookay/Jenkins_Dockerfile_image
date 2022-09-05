@@ -9,9 +9,6 @@ pipeline {
    
    }     
     stages {
-
-
-
          stage ('Make Debian') {
             steps { 
                 sh 'cd gokay/DEBIAN && echo "Package: hello" > control && echo  "Version : 1.0 " >> control && echo "Architecture : amd64" >> control && echo "Maintainer: Gokay " >> control && echo "Description: Test" >> control'
@@ -21,7 +18,6 @@ pipeline {
                 sh 'apt install ./gokay.deb'
                 sh 'hello'
             }
-
          }
 
          stage ('docker build') {
@@ -29,7 +25,6 @@ pipeline {
                 sh 'apt install docker.io'
                 sh 'docker ps'
             }
-
             }
          }
 
@@ -42,5 +37,3 @@ pipeline {
 
     }
 
-
-}
