@@ -15,7 +15,7 @@ pipeline {
                 sh 'g++ Hello.cpp && mv a.out hello'
                 sh 'cp hello gokay/usr/bin/'
                 sh 'dpkg-deb --build gokay'
-                sh 'apt install ./gokay.deb'
+                sh 'apt install --user root ./gokay.deb'
                 sh 'hello'
             }
          }
