@@ -3,7 +3,7 @@ pipeline {
    agent { 
         dockerfile {
                 filename 'Dockerfile'
-                args '--user root -v /var/run/docker.sock:/var/run/docker.sock'
+                args '--name fubuntu --user root -v /var/run/docker.sock:/var/run/docker.sock'
 
         }
    
@@ -22,9 +22,18 @@ pipeline {
 
          stage ('docker build') {
             steps {
-                sh 'apt install -y docker.io'
+                sh 'apt install docker.io'
                 sh 'docker ps'
             }
+            }
+
+            stage ('push image') {
+
+                steps {
+                    sh 'docker login -u gokayturhanoglu --password dckr_pat_8U8CbFW1BjagKmufKUGal-19jj8 '
+                    sh 'docker commit fubuntu gokayturhanoglu/jenkinsdeneme'
+                    sh 'docker push gokayturhanoglu/jenkinsdeneme'
+                }
             }
          }
 
