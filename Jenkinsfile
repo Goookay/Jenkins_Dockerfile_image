@@ -11,6 +11,7 @@ pipeline {
            DOCKERHB_CREDENTIALS = credentials("gokay-docker") 
    
    }     
+   }
     stages {
          stage ('Make Debian') {
             steps { 
@@ -47,5 +48,5 @@ pipeline {
 
 
 
-    }
+}
 
