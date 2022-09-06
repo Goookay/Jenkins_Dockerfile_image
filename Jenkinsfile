@@ -11,7 +11,7 @@ pipeline {
         }
    }
        environment {
-           DOCKERHB_CREDENTIALS = credentials("gokay-docker") 
+           DOCKERHUB_CREDENTIALS = credentials("gokay-docker") 
    
    }     
    
