@@ -1,5 +1,8 @@
 pipeline {
-    
+        parameters {
+                string (name: 'Version' defaultValue: '${BUILD_NUMBER}' description: 'Version of the Application')
+
+        }
    agent { 
         dockerfile {
                 filename 'Dockerfile'
@@ -8,14 +11,14 @@ pipeline {
         }
    }
        environment {
-           DOCKERHUB_CREDENTIALS = credentials("gokay-docker") 
+           DOCKERHB_CREDENTIALS = credentials("gokay-docker") 
    
    }     
    
     stages {
          stage ('Make Debian') {
             steps { 
-                sh 'cd gokay/DEBIAN && echo "Package: hello" > control && echo  "Version : 1.0 " >> control && echo "Architecture : amd64" >> control && echo "Maintainer: Gokay " >> control && echo "Description: Test" >> control'
+                sh 'cd gokay/DEBIAN && echo "Package: hello" > control && echo  " Version: ${params.Version} " >> control && echo "Architecture : amd64" >> control && echo "Maintainer: Gokay " >> control && echo "Description: Test" >> control'
                 sh 'g++ Hello.cpp && mv a.out hello'
                 sh 'cp hello gokay/usr/bin/'
                 sh 'dpkg-deb --build gokay'
