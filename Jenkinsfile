@@ -19,9 +19,8 @@ pipeline {
          stage ('Make Debian') {
             steps { 
                 sh ''' cd gokay/DEBIAN &&  echo "Package: hello" > control && 
-                echo " Version: '''
-                       ${params.VERSION}''' " >> control 
-                && echo "Architecture : amd64" >> control && echo "Maintainer: Gokay " >> control
+                echo " Version: '${params.VERSION}' " >> control      
+                 && echo "Architecture : amd64" >> control && echo "Maintainer: Gokay " >> control
                 && echo "Description: Test" >> control '''
                 sh 'g++ Hello.cpp && mv a.out hello'
                 sh 'cp hello gokay/usr/bin/'
