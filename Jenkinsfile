@@ -43,7 +43,7 @@ pipeline {
             stage ('push image') {
 
                 steps {
-                    sh 'docker login -u gokayturhanoglu --password $DOCKERHUB_CREDENTIALS_PSW '
+                        sh 'docker login -u gokayturhanoglu --password ${DOCKERHUB_CREDENTIALS_PSW} '
                     sh 'docker commit fubuntu gokayturhanoglu/jenkinsdeneme'
                     sh 'docker push gokayturhanoglu/jenkinsdeneme'
                 }
