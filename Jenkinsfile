@@ -1,6 +1,6 @@
 pipeline {
         parameters {
-                string (name: 'Version' defaultValue: '${BUILD_NUMBER}' description: 'Version of the Application')
+                string (name: 'Version', defaultValue: '${BUILD_NUMBER}', description: 'Version of the Application')
 
         }
    agent { 
